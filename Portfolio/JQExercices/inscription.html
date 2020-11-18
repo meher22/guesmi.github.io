@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>FORMATION</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body bgcolor="#FFCCCC">
+    <h2 align="center"><u>INSCRIPTION</u></h2>
+    <br><form name="f" action="sauvegarder.html" method="post" >                    
+            <label>Nom et Prénom *: </label><input type="text" size="25" id="nom"> <br><br>
+            <label>CIN *: </label><input type="text" size="10" id="cin"><br><br> 
+            <label>Adresse e-mail *: </label><input type="text" size="25" id="email"> <br><br>
+            <label>Niveau  : </label><input type="radio" name="r" checked value="1"> Secondaire     <input type="radio" name="r" value="2"> Universitaire      <input type="radio" name="r" value="3"> Autre<br><br>
+            Modules de formation :<br>
+                                    <SELECT id="list" multiple size="3">
+                                        <OPTION VALUE="Bureautique">Bureautique</OPTION>
+                                        <OPTION VALUE="SE et Réseaux info.">SE et Réseaux info.</OPTION>
+                                        <OPTION VALUE="TIC">TIC</OPTION>
+                                        <OPTION VALUE="Programmation">Programmation</OPTION>
+                                    </SELECT><br><br>
+            <label style="padding-left: 20%;">(*) Champs obligatoire</label><br><br>
+            <input id = "envoyer" type="submit" value="Envoyer">   <input type="reset" value="Annuler">
+    </form>
+</body>
+<script>
+    $(document).ready(function() {
+        $("#envoyer").click(function(){
+            if ($('#nom').is(':empty')) {
+                alert("Veuillez taper votre nom et prénom!");
+                return false;
+            };
+            if ($('#cin').is(':empty')) {
+                alert("Veuillez taper votre CIN!");
+                return false;
+            };
+            var size = $("#cin").length;
+            if ($(size) !== 8) {
+                alert("Le numéro de votre CIN est incorrect!");
+                return false;
+            }
+            if ($('#email').is(':empty')) {
+                alert("Veuillez entrer votre adresse e-mail!");
+                return false;
+            }
+            if ($('#email').val().indexOf('@') == -1) {
+                alert("Adresse e-mail incorrecte!");
+                return false;
+            }
+
+            var nombre_formation = 0;
+            $('#list').each(function (){
+                if ($(this).is(':selected')) {
+                    $(nombre_formation) = $(nombre_formation) + 1
+                };
+            });
+            if ($(nombre_formation) == 0) {
+                alert("Veuillez choisir un module de formation!");
+                return false;
+            }
+            if ($(nombre_formation) > 2) {
+                alert("Veuillez sélectionner au maximum 2 choix!");
+                return false;
+            }
+        });
+    });
+</script>
+</html>

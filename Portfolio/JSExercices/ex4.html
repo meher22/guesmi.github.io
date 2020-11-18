@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Calcul</title>
+        <script>
+        function resultat()
+        { 
+            var a=document.form.v1.value;
+            var b=eval(a);
+            document.form.v2.value=b;
+        }
+        </script>
+    </head>
+    <body>
+        <form name="form">
+            <input type="text" name="v1">
+            <input type="button"  value=" = " onclick="resultat()">
+            <input type="text" name="v2">
+            <br>
+            <a href="#" onclick="resultat()">Afficher le résultat</a>
+        </form>
+    </body>
+</html>

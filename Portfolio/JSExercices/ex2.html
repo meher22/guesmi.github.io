@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Moyenne</title>
+	<script>
+		function note (dc1,dc2,ds,c1,c2,c3)
+		{
+		moyenne=(c1*dc1+c2*dc2+c3*ds)/4;
+		document.write("la moyenne est :"+moyenne);
+		}
+	</script>
+    </head>
+    <body>
+        <script>
+        dc1=Number(prompt("Donner  la note du dc1 : ",""));
+	c1=Number(prompt("Donner  la coefficient du dc1 : ",""));
+        dc2=Number(prompt("Donner  la note du dc2 : ",""));
+	c2=Number(prompt("Donner  la coefficient du dc2 : ",""));
+        ds= Number(prompt("Donner  la note du ds : ",""));
+	c3=Number(prompt("Donner  la coefficient du ds : ",""));
+	note(dc1,dc2,ds,c1,c2,c3);
+        </script>
+    </body>
+</html>

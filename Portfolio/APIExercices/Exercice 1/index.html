@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script language="javascript" src="ex11.js"></script>
+    <title>Contact</title>
+</head>
+<body>
+    <div class="monDiv">
+        <h1>Contact</h1>
+        <p>Be Called back for more information</p>
+        <form method="post" action="index2.html" >
+            <label for="first_name">First name (*)</label>
+            <input type="text" name="first_name" id="first_name" oninput="sessionStorage.setItem('username',this.value);" autocomplete="on" required />
+            <br><br>
+            <label for="last_name">Last name (*) </label>
+            <input type="text" name="last_name" id="last_name" autocomplete="on" required />
+            <br><br>
+            <label for="select">You want to be<br>contacted by </label>
+            <Select name="module">
+                <option> Phone </option>
+                <option> E-mail </option>
+                <option> Facebook </option>
+            </Select>
+            <br><br>
+            <label for="phone">Phone number</label>
+            <input type="text" name="phone" id="phone"/>
+            <br><br>
+            <label for="phone">When (*) </label>
+            <input type="date" name="date" id="date" required/>
+            <br><br>
+            <label for="time">Between (*) </label>
+            <input type="time" name="time" id="time" required/>
+            <label>and</label>
+            <input type="time" name="time2" id="time2" required/>
+            <br><br>
+            <input type="reset" value="Cancel">    <input id = "submit" type="submit" value="Submit">
+        </form>
+    </div>
+    <br><br>
+    <div id="Counter">
+        
+    </div>
+    <button id = "find-me">Show my location</button><br/>
+    <p id = "status"></p>
+    <a id = "map-link" target="_blank"></a>
+
+
+    <script>
+        function geoFindMe() {
+
+        const status = document.querySelector('#status');
+        const mapLink = document.querySelector('#map-link');
+
+        mapLink.href = '';
+        mapLink.textContent = '';
+
+        function success(position) {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        status.textContent = '';
+        mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+        mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+        }
+
+        function error() {
+        status.textContent = 'Unable to retrieve your location';
+        }
+
+        if(!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+        } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+        }
+
+        document.querySelector('#find-me').addEventListener('click', geoFindMe);
+        </script>
+</body>
+</html>

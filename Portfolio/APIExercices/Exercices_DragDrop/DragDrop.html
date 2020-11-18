@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>Exercice Drag & Drop</title>
+</head>
+
+<body>
+    <div draggable="true" ondragstart="dragStart(event)">
+        <img id="img" src="./Images/madelaine.png" width="275" height="183" alt="" />
+    </div>
+    <div ondragover="dragOver(event)" ondrop="dragDrop(event)">
+        <img src="./Images/tassecafe.jpg" width="275" height="183" alt="">
+    </div>
+
+</body>
+<script>
+    function dragStart(bar) {
+        bar.dataTransfer.setData("text", bar.target.getAttribute('id'));
+        document.body.style.backgroundColor = "blue";
+    }
+
+    function dragOver(ev) {
+        ev.preventDefault();
+    }
+
+    function dragDrop(ev) {
+        ev.preventDefault();
+        var idDeLaSource = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById("img"));
+        document.body.style.backgroundColor = "red";
+    }
+</script>
+</html>
